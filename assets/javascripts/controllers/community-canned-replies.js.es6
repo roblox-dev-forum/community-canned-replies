@@ -3,7 +3,7 @@ import showModal from "discourse/lib/show-modal";
 import { ajax } from "discourse/lib/ajax";
 import { observes } from "ember-addons/ember-computed-decorators";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import applyReply from "discourse/plugins/community-canned-replies/lib/community-apply-reply";
+import applyCommunityReply from "discourse/plugins/community-canned-replies/lib/community-apply-reply";
 
 export default Ember.Controller.extend(ModalFunctionality, {
   selectedReply: null,
@@ -48,7 +48,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
 
   actions: {
     apply() {
-      applyReply(
+      applyCommunityReply(
         this.get("selectedReplyId"),
         this.selectedReply.title,
         this.selectedReply.content,
@@ -58,13 +58,13 @@ export default Ember.Controller.extend(ModalFunctionality, {
       this.send("closeModal");
     },
 
-    newReply() {
+    newCommunityReply() {
       this.send("closeModal");
 
       showModal("community-new-reply").set("newContent", this.composerModel.reply);
     },
 
-    editReply() {
+    editCommunityReply() {
       this.send("closeModal");
 
       showModal("community-edit-reply").setProperties({

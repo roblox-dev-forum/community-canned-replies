@@ -3,7 +3,7 @@
     {{#conditional-loading-spinner condition=loadingReplies}}
       {{#if canEdit}}
         {{d-button class="community-canned-replies-new"
-            action=(action "newReply")
+            action=(action "newCommunityReply")
             icon="plus"
             label="community_canned_replies.insert.new_button"}}
         {{text-field class="community-canned-replies-filter" value=listFilter placeholder=(i18n "community_canned_replies.filter_hint")}}

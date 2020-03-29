@@ -1,5 +1,5 @@
 import showModal from "discourse/lib/show-modal";
-import applyReply from "discourse/plugins/community-canned-replies/lib/community-apply-reply";
+import applyCommunityReply from "discourse/plugins/community-canned-replies/lib/community-apply-reply";
 
 export default Ember.Component.extend({
   isOpen: false,
@@ -27,7 +27,7 @@ export default Ember.Component.extend({
     apply() {
       const composer = Discourse.__container__.lookup("controller:composer");
 
-      applyReply(
+      applyCommunityReply(
         this.get("reply.id"),
         this.get("reply.title"),
         this.get("reply.content"),
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
       this.appEvents.trigger("community-canned-replies:hide");
     },
 
-    editReply() {
+    editCommunityReply() {
       const composer = Discourse.__container__.lookup("controller:composer");
 
       composer.send("closeModal");

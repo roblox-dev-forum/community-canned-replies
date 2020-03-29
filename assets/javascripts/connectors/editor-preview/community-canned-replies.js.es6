@@ -96,11 +96,11 @@ export default {
       this.set("isVisible", false);
     },
 
-    newReply() {
+    newCommunityReply() {
       const composer = getOwner(this).lookup("controller:composer");
       composer.send("closeModal");
 
-      showModal("new-reply").set("newContent", composer.model.reply);
+      showModal("community-new-reply").set("newContent", composer.model.reply);
     }
   }
 };

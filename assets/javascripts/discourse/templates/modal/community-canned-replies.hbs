@@ -30,7 +30,7 @@
 <div class="modal-footer">
   {{d-button
     class="pull-left community-canned-replies-new"
-    action=(action "newReply")
+    action=(action "newCommunityReply")
     icon="plus"
     label="community_canned_replies.insert.new_button"
   }}
@@ -38,7 +38,7 @@
   {{#if selectedReply}}
     {{d-button
       class="pull-left community-canned-replies-edit"
-      action=(action "editReply")
+      action=(action "editCommunityReply")
       icon="pencil-alt"
       label="community_canned_replies.insert.edit_button"
     }}
