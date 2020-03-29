@@ -7,12 +7,12 @@ export default {
   setupComponent(args, component) {
     const currentUser = this.get("currentUser");
     const everyoneCanEdit =
-      this.get("siteSettings.canned_replies_everyone_enabled") &&
-      this.get("siteSettings.canned_replies_everyone_can_edit");
+      this.get("siteSettings.community_canned_replies_everyone_enabled") &&
+      this.get("siteSettings.community_canned_replies_everyone_can_edit");
     const currentUserCanEdit =
-      this.get("siteSettings.canned_replies_enabled") &&
+      this.get("siteSettings.community_canned_replies_enabled") &&
       currentUser &&
-      currentUser.can_edit_canned_replies;
+      currentUser.can_edit_community_canned_replies;
     const canEdit = currentUserCanEdit ? currentUserCanEdit : everyoneCanEdit;
     this.set("canEdit", canEdit);
 
@@ -23,14 +23,14 @@ export default {
       filteredReplies: []
     });
 
-    if (!component.appEvents.has("canned-replies:show")) {
+    if (!component.appEvents.has("community-canned-replies:show")) {
       this.showCanned = () => component.send("show");
-      component.appEvents.on("canned-replies:show", this, this.showCanned);
+      component.appEvents.on("community-canned-replies:show", this, this.showCanned);
     }
 
-    if (!component.appEvents.has("canned-replies:hide")) {
+    if (!component.appEvents.has("community-canned-replies:hide")) {
       this.hideCanned = () => component.send("hide");
-      component.appEvents.on("canned-replies:hide", this, this.hideCanned);
+      component.appEvents.on("community-canned-replies:hide", this, this.hideCanned);
     }
 
     component.addObserver("listFilter", function() {
@@ -61,9 +61,9 @@ export default {
   },
 
   teardownComponent(component) {
-    if (component.appEvents.has("canned-replies:show") && this.showCanned) {
-      component.appEvents.off("canned-replies:show", this, this.showCanned);
-      component.appEvents.off("canned-replies:hide", this, this.hideCanned);
+    if (component.appEvents.has("community-canned-replies:show") && this.showCanned) {
+      component.appEvents.off("community-canned-replies:show", this, this.showCanned);
+      component.appEvents.off("community-canned-replies:hide", this, this.hideCanned);
     }
   },
 
@@ -72,7 +72,7 @@ export default {
       $("#reply-control .d-editor-preview-wrapper > .d-editor-preview").hide();
       this.setProperties({ isVisible: true, loadingReplies: true });
 
-      ajax("/canned_replies")
+      ajax("/community_canned_replies")
         .then(results => {
           this.setProperties({
             replies: results.replies,
@@ -85,7 +85,7 @@ export default {
 
           if (this.canEdit) {
             Ember.run.schedule("afterRender", () =>
-              document.querySelector(".canned-replies-filter").focus()
+              document.querySelector(".community-canned-replies-filter").focus()
             );
           }
         });

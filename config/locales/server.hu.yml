@@ -7,7 +7,7 @@
 
 hu:
   site_settings:
-    canned_replies_enabled: 'Megjelenítse az eltett válaszok beillesztése gombot a szerkesztő ablakon?'
+    community_canned_replies_enabled: 'Megjelenítse az eltett válaszok beillesztése gombot a szerkesztő ablakon?'
   replies:
     default_reply:
       title: "Első eltett válaszom"

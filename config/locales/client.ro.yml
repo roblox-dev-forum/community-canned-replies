@@ -7,7 +7,7 @@
 
 ro:
   js:
-    canned_replies:
+    community_canned_replies:
       title:
         name: 'Titlu'
       insert:

@@ -1,5 +1,5 @@
 import showModal from "discourse/lib/show-modal";
-import applyReply from "discourse/plugins/discourse-canned-replies/lib/apply-reply";
+import applyReply from "discourse/plugins/community-canned-replies/lib/community-apply-reply";
 
 export default Ember.Component.extend({
   isOpen: false,
@@ -9,12 +9,12 @@ export default Ember.Component.extend({
     this._super(...arguments);
     const currentUser = this.get("currentUser");
     const everyoneCanEdit =
-      this.get("siteSettings.canned_replies_everyone_enabled") &&
-      this.get("siteSettings.canned_replies_everyone_can_edit");
+      this.get("siteSettings.community_canned_replies_everyone_enabled") &&
+      this.get("siteSettings.community_canned_replies_everyone_can_edit");
     const currentUserCanEdit =
-      this.get("siteSettings.canned_replies_enabled") &&
+      this.get("siteSettings.community_canned_replies_enabled") &&
       currentUser &&
-      currentUser.can_edit_canned_replies;
+      currentUser.can_edit_community_canned_replies;
     const canEdit = currentUserCanEdit ? currentUserCanEdit : everyoneCanEdit;
     this.set("canEdit", canEdit);
   },
@@ -34,14 +34,14 @@ export default Ember.Component.extend({
         composer.model
       );
 
-      this.appEvents.trigger("canned-replies:hide");
+      this.appEvents.trigger("community-canned-replies:hide");
     },
 
     editReply() {
       const composer = Discourse.__container__.lookup("controller:composer");
 
       composer.send("closeModal");
-      showModal("edit-reply").setProperties({
+      showModal("community-edit-reply").setProperties({
         composerModel: composer.composerModel,
         replyId: this.get("reply.id"),
         replyTitle: this.get("reply.title"),

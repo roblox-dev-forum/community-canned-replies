@@ -47,7 +47,7 @@ export default function(replyId, replyTitle, replyContent, model) {
     model.set("title", replyTitle);
   }
 
-  ajax(`/canned_replies/${replyId}/use`, {
+  ajax(`/community_canned_replies/${replyId}/use`, {
     type: "PATCH"
   }).catch(popupAjaxError);
 }

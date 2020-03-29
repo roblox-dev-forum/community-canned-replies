@@ -7,8 +7,8 @@
 
 pt_BR:
   site_settings:
-    canned_replies_enabled: 'Mostrar botão de inserir resposta pronta na janela do compositor?'
-    canned_replies_groups: 'Adicionar acesso às respostas prontas para grupos não-staff por nome do grupo'
+    community_canned_replies_enabled: 'Mostrar botão de inserir resposta pronta na janela do compositor?'
+    community_canned_replies_groups: 'Adicionar acesso às respostas prontas para grupos não-staff por nome do grupo'
   replies:
     default_reply:
       title: "Minha primeira resposta pronta"

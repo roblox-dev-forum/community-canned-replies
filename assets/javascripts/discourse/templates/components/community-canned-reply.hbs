@@ -1,14 +1,14 @@
-<div class="canned-reply" id="canned-reply-{{reply.id}}">
-  <div {{action "toggle"}} class="canned-reply-title">
+<div class="community-canned-reply" id="community-canned-reply-{{reply.id}}">
+  <div {{action "toggle"}} class="community-canned-reply-title">
     {{d-button
-      class="canned-replies-apply"
+      class="community-canned-replies-apply"
       action=(action "apply")
       icon="far-clipboard"
     }}
 
     {{#if canEdit}}
       {{d-button
-        class="canned-replies-edit"
+        class="community-canned-replies-edit"
         action=(action "editReply")
         icon="pencil-alt"
       }}
@@ -18,7 +18,7 @@
   </div>
 
   {{#if isOpen}}
-    <div class="canned-replies-content">
+    <div class="community-canned-replies-content">
       {{{cook-text reply.content}}}
     </div>
   {{/if}}

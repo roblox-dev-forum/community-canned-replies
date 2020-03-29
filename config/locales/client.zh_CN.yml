@@ -7,7 +7,7 @@
 
 zh_CN:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: '标题'
       composer_button_text: "归入方框的回复"
       title:

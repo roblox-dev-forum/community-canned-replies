@@ -7,7 +7,7 @@
 
 sw:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'Kichwa cha habari'
       composer_button_text: "Majibu ambayo yameifadhiwa"
       title:

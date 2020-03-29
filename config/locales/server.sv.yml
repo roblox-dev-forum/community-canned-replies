@@ -7,8 +7,8 @@
 
 sv:
   site_settings:
-    canned_replies_enabled: 'Vill du visa knappen Infoga förberett svar i redigeringsfönstret?'
-    canned_replies_groups: 'Lägg till åtkomst till förberedda svar för icke-personalgrupper efter gruppnamn'
+    community_canned_replies_enabled: 'Vill du visa knappen Infoga förberett svar i redigeringsfönstret?'
+    community_canned_replies_groups: 'Lägg till åtkomst till förberedda svar för icke-personalgrupper efter gruppnamn'
   replies:
     default_reply:
       title: "Mitt första förberedda svar"

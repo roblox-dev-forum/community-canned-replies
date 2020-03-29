@@ -1,7 +1,7 @@
-.canned-replies-modal {
+.community-canned-replies-modal {
   max-width: 1080px;
-  .canned-replies-sort-usage,
-  .canned-replies-sort-alpha {
+  .community-canned-replies-sort-usage,
+  .community-canned-replies-sort-alpha {
     display: inline-block;
 
     .btn {
@@ -14,7 +14,7 @@
   }
 }
 
-.mobile-view .canned-replies-modal {
+.mobile-view .community-canned-replies-modal {
   min-height: 50vh;
   box-sizing: border-box;
   width: 100vw;
@@ -32,26 +32,26 @@
   }
 }
 
-.canned-replies-footer {
+.community-canned-replies-footer {
   margin-top: 3px;
 }
 
-.canned-reply-title:hover {
+.community-canned-reply-title:hover {
   background-color: $highlight-medium;
   cursor: pointer;
 }
 
 #reply-control {
-  .canned-replies {
+  .community-canned-replies {
     height: 100%;
     width: 100%;
   }
 
-  .canned-reply {
+  .community-canned-reply {
     padding-bottom: 1em;
   }
 }
 
-.canned-replies-form-title-input {
+.community-canned-replies-form-title-input {
   width: 100%;
 }

@@ -7,8 +7,8 @@
 
 es:
   site_settings:
-    canned_replies_enabled: '¿Mostrar el botón de insertar respuestas predefinidas en el editor?'
-    canned_replies_groups: 'Añadir acceso a las respuestas predefinidas para grupos que no sean parte del staff por nombre de grupo'
+    community_canned_replies_enabled: '¿Mostrar el botón de insertar respuestas predefinidas en el editor?'
+    community_canned_replies_groups: 'Añadir acceso a las respuestas predefinidas para grupos que no sean parte del staff por nombre de grupo'
   replies:
     default_reply:
       title: "Mi primera respuesta predefinida"

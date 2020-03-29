@@ -1,6 +1,6 @@
 en:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'title...'
       composer_button_text: "Canned replies"
       title:

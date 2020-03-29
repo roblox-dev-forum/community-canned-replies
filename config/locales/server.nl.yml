@@ -7,8 +7,8 @@
 
 nl:
   site_settings:
-    canned_replies_enabled: 'Knop Sjabloonantwoord invoegen in editorvenster tonen?'
-    canned_replies_groups: 'Toegang tot sjabloonantwoorden voor niet-stafgroepen toevoegen op groepsnaam'
+    community_canned_replies_enabled: 'Knop Sjabloonantwoord invoegen in editorvenster tonen?'
+    community_canned_replies_groups: 'Toegang tot sjabloonantwoorden voor niet-stafgroepen toevoegen op groepsnaam'
   replies:
     default_reply:
       title: "Mijn eerste sjabloonantwoord"

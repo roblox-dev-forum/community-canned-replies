@@ -7,7 +7,7 @@
 
 sk:
   site_settings:
-    canned_replies_enabled: 'Má sa v editore zobraziť tlačítko na vloženie pripravenej odpovede?'
+    community_canned_replies_enabled: 'Má sa v editore zobraziť tlačítko na vloženie pripravenej odpovede?'
   replies:
     default_reply:
       title: "Moja prvá pripravená odpoveď"

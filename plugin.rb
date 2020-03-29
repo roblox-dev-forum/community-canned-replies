@@ -1,42 +1,39 @@
 # frozen_string_literal: true
 
-# name: discourse-canned-replies
-# about: Add canned replies through the composer
+# name: community-canned-replies
+# about: Add canned replies through the composer for community groups
 # version: 1.2
-# authors: Jay Pfaffman and André Pereira
-# url: https://github.com/discourse/discourse-canned-replies
+# url: https://github.com/roblox-dev-forum/community-canned-replies
 
-enabled_site_setting :canned_replies_enabled
+enabled_site_setting :community_canned_replies_enabled
 
-register_asset 'stylesheets/canned-replies.scss'
+register_asset 'stylesheets/community-canned-replies.scss'
 
 register_svg_icon "far-clipboard" if respond_to?(:register_svg_icon)
 
 after_initialize do
 
-  load File.expand_path('../app/jobs/onceoff/rename_canned_replies.rb', __FILE__)
-
-  module ::CannedReply
-    PLUGIN_NAME ||= "discourse-canned-replies".freeze
+  module ::CommunityCannedReply
+    PLUGIN_NAME ||= "community-canned-replies".freeze
     STORE_NAME ||= "replies".freeze
 
     class Engine < ::Rails::Engine
-      engine_name CannedReply::PLUGIN_NAME
-      isolate_namespace CannedReply
+      engine_name CommunityCannedReply::PLUGIN_NAME
+      isolate_namespace CommunityCannedReply
     end
   end
 
-  class CannedReply::Reply
+  class CommunityCannedReply::Reply
     class << self
 
       def add(user_id, title, content)
         id = SecureRandom.hex(16)
         record = { id: id, title: title, content: content }
 
-        replies = PluginStore.get(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME) || {}
+        replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME) || {}
 
         replies[id] = record
-        PluginStore.set(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME, replies)
+        PluginStore.set(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME, replies)
 
         record
       end
@@ -45,20 +42,20 @@ after_initialize do
         record = { id: reply_id, title: title, content: content }
         remove(user_id, reply_id)
 
-        replies = PluginStore.get(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME) || {}
+        replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME) || {}
 
         replies[reply_id] = record
-        PluginStore.set(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME, replies)
+        PluginStore.set(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME, replies)
 
         record
       end
 
       def all(user_id)
-        replies = PluginStore.get(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME)
+        replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)
 
         if replies.blank?
           add_default_reply
-          replies = PluginStore.get(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME)
+          replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)
         end
 
         return [] if replies.blank?
@@ -72,18 +69,18 @@ after_initialize do
       end
 
       def remove(user_id, reply_id)
-        replies = PluginStore.get(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME)
+        replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)
         replies.delete(reply_id)
-        PluginStore.set(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME, replies)
+        PluginStore.set(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME, replies)
       end
 
       def use(user_id, reply_id)
-        replies = PluginStore.get(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME)
+        replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)
         reply = replies[reply_id]
         reply['usages'] ||= 0
         reply['usages'] += 1
         replies[reply_id] = reply
-        PluginStore.set(CannedReply::PLUGIN_NAME, CannedReply::STORE_NAME, replies)
+        PluginStore.set(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME, replies)
       end
 
       def add_default_reply()
@@ -94,8 +91,8 @@ after_initialize do
 
   require_dependency "application_controller"
 
-  class CannedReply::CannedRepliesController < ::ApplicationController
-    requires_plugin CannedReply::PLUGIN_NAME
+  class CommunityCannedReply::CommunityCannedRepliesController < ::ApplicationController
+    requires_plugin CommunityCannedReply::PLUGIN_NAME
 
     before_action :ensure_logged_in
     skip_before_action :check_xhr
@@ -105,14 +102,14 @@ after_initialize do
       content = params.require(:content)
       user_id = current_user.id
 
-      record = CannedReply::Reply.add(user_id, title, content)
+      record = CommunityCannedReply::Reply.add(user_id, title, content)
       render json: record
     end
 
     def destroy
       reply_id = params.require(:id)
       user_id  = current_user.id
-      record = CannedReply::Reply.remove(user_id, reply_id)
+      record = CommunityCannedReply::Reply.remove(user_id, reply_id)
       render json: record
     end
 
@@ -120,7 +117,7 @@ after_initialize do
       reply_id = params.require(:id)
       user_id  = current_user.id
 
-      record = CannedReply::Reply.get_reply(user_id, reply_id)
+      record = CommunityCannedReply::Reply.get_reply(user_id, reply_id)
       render json: record
     end
 
@@ -130,62 +127,62 @@ after_initialize do
       content = params.require(:content)
       user_id = current_user.id
 
-      record = CannedReply::Reply.edit(user_id, reply_id, title, content)
+      record = CommunityCannedReply::Reply.edit(user_id, reply_id, title, content)
       render json: record
     end
 
     def use
       reply_id = params.require(:id)
       user_id  = current_user.id
-      record = CannedReply::Reply.use(user_id, reply_id)
+      record = CommunityCannedReply::Reply.use(user_id, reply_id)
       render json: record
     end
 
     def index
       user_id = current_user.id
-      replies = CannedReply::Reply.all(user_id)
+      replies = CommunityCannedReply::Reply.all(user_id)
       render json: { replies: replies }
     end
   end
 
-  add_to_class(:user, :can_edit_canned_replies?) do
+  add_to_class(:user, :can_edit_community_canned_replies?) do
     return true if staff?
-    return true if SiteSetting.canned_replies_everyone_can_edit
-    group_list = SiteSetting.canned_replies_groups.split("|").map(&:downcase)
+    return true if SiteSetting.community_canned_replies_everyone_can_edit
+    group_list = SiteSetting.community_canned_replies_groups.split("|").map(&:downcase)
     groups.any? { |group| group_list.include?(group.name.downcase) }
   end
 
-  add_to_class(:user, :can_use_canned_replies?) do
+  add_to_class(:user, :can_use_community_canned_replies?) do
     return true if staff?
-    return true if SiteSetting.canned_replies_everyone_enabled
-    group_list = SiteSetting.canned_replies_groups.split("|").map(&:downcase)
+    return true if SiteSetting.community_canned_replies_everyone_enabled
+    group_list = SiteSetting.community_canned_replies_groups.split("|").map(&:downcase)
     groups.any? { |group| group_list.include?(group.name.downcase) }
   end
 
-  add_to_serializer(:current_user, :can_use_canned_replies) do
-    object.can_use_canned_replies?
+  add_to_serializer(:current_user, :can_use_community_canned_replies) do
+    object.can_use_community_canned_replies?
   end
 
-  add_to_serializer(:current_user, :can_edit_canned_replies) do
-    object.can_edit_canned_replies?
+  add_to_serializer(:current_user, :can_edit_community_canned_replies) do
+    object.can_edit_community_canned_replies?
   end
 
   require_dependency 'current_user'
-  class CannedRepliesConstraint
+  class CommunityCannedRepliesConstraint
     def matches?(request)
       provider = Discourse.current_user_provider.new(request.env)
       if request.get? || request.patch?
-        provider.current_user&.can_use_canned_replies?
+        provider.current_user&.can_use_community_canned_replies?
       else
-        provider.current_user&.can_edit_canned_replies?
+        provider.current_user&.can_edit_community_canned_replies?
       end
     rescue Discourse::InvalidAccess, Discourse::ReadOnly
       false
     end
   end
 
-  CannedReply::Engine.routes.draw do
-    resources :canned_replies, path: '/', only: [:index, :create, :destroy, :update] do
+  CommunityCannedReply::Engine.routes.draw do
+    resources :community_canned_replies, path: '/', only: [:index, :create, :destroy, :update] do
       member do
         get "reply"
         patch "use"
@@ -194,7 +191,7 @@ after_initialize do
   end
 
   Discourse::Application.routes.append do
-    mount ::CannedReply::Engine, at: "/canned_replies", constraints: CannedRepliesConstraint.new
+    mount ::CommunityCannedReply::Engine, at: "/community_canned_replies", constraints: CommunityCannedRepliesConstraint.new
   end
 
 end

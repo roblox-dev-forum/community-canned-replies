@@ -7,8 +7,8 @@
 
 tr_TR:
   site_settings:
-    canned_replies_enabled: 'Yazar penceresinde eklenen hazır yanıt düğmesini göster?'
-    canned_replies_groups: 'Personel olmayan gruplar için hazır cevaplara grup adına göre erişim ekleyin'
+    community_canned_replies_enabled: 'Yazar penceresinde eklenen hazır yanıt düğmesini göster?'
+    community_canned_replies_groups: 'Personel olmayan gruplar için hazır cevaplara grup adına göre erişim ekleyin'
   replies:
     default_reply:
       title: "İlk hazır yanıtım"

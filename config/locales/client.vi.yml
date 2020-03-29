@@ -7,7 +7,7 @@
 
 vi:
   js:
-    canned_replies:
+    community_canned_replies:
       title:
         name: 'Tiêu đề'
       insert:

@@ -7,7 +7,7 @@
 
 nb_NO:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'tittel…'
       title:
         name: 'Tittel'

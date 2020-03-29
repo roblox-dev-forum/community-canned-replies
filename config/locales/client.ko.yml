@@ -7,7 +7,7 @@
 
 ko:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: '제목...'
       title:
         name: '제목'

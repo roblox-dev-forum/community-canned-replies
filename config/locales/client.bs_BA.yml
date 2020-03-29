@@ -7,7 +7,7 @@
 
 bs_BA:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'naslov ...'
       composer_button_text: "Konzervirani odgovori"
       title:

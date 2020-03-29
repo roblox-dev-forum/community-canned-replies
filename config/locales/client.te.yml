@@ -7,7 +7,7 @@
 
 te:
   js:
-    canned_replies:
+    community_canned_replies:
       title:
         name: 'శీర్షిక'
       insert:

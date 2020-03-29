@@ -7,7 +7,7 @@
 
 gl:
   js:
-    canned_replies:
+    community_canned_replies:
       title:
         name: 'Título'
       insert:

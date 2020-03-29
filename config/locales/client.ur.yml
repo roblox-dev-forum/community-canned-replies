@@ -7,7 +7,7 @@
 
 ur:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'عنوان...'
       composer_button_text: "طہ شدہ جوابات"
       title:

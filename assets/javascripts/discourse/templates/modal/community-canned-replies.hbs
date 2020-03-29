@@ -1,6 +1,6 @@
 {{#d-modal-body
-  title="canned_replies.insert.modal_title"
-  class="canned-replies-modal"
+  title="community_canned_replies.insert.modal_title"
+  class="community-canned-replies-modal"
   style="overflow: visible"
 }}
   {{#conditional-loading-spinner condition=loadingReplies}}
@@ -8,12 +8,12 @@
       <div class="reply-selector">
         <div class="selector">
           {{combo-box
-            id="canned-replies-combobox"
+            id="community-canned-replies-combobox"
             valueAttribute="id"
             value=selectedReplyId
             nameProperty="title"
             content=replies
-            none="canned_replies.insert.choose"
+            none="community_canned_replies.insert.choose"
           }}
         </div>
       </div>
@@ -29,25 +29,25 @@
 
 <div class="modal-footer">
   {{d-button
-    class="pull-left canned-replies-new"
+    class="pull-left community-canned-replies-new"
     action=(action "newReply")
     icon="plus"
-    label="canned_replies.insert.new_button"
+    label="community_canned_replies.insert.new_button"
   }}
 
   {{#if selectedReply}}
     {{d-button
-      class="pull-left canned-replies-edit"
+      class="pull-left community-canned-replies-edit"
       action=(action "editReply")
       icon="pencil-alt"
-      label="canned_replies.insert.edit_button"
+      label="community_canned_replies.insert.edit_button"
     }}
 
     {{d-button
-      class="btn-primary pull-right canned-replies-apply"
+      class="btn-primary pull-right community-canned-replies-apply"
       action=(action "apply")
       icon="far-clipboard"
-      label="canned_replies.insert.insert_button"
+      label="community_canned_replies.insert.insert_button"
     }}
   {{/if}}
 </div>

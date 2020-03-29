@@ -7,7 +7,7 @@
 
 sl:
   site_settings:
-    canned_replies_enabled: 'Prikaži vstavi pripravljen odgovor v oknu urejevalnika?'
+    community_canned_replies_enabled: 'Prikaži vstavi pripravljen odgovor v oknu urejevalnika?'
   replies:
     default_reply:
       title: "Moj prvi pripravljen odgovor"

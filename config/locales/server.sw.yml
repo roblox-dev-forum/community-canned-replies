@@ -7,7 +7,7 @@
 
 sw:
   site_settings:
-    canned_replies_enabled: 'Onyesha Kitufe cha kuweka majibu yaliyohifadhiwa kwenye sehemu ya kuandika? '
+    community_canned_replies_enabled: 'Onyesha Kitufe cha kuweka majibu yaliyohifadhiwa kwenye sehemu ya kuandika? '
   replies:
     default_reply:
       title: "Jibu langu la kwanza lililohifadhiwa"

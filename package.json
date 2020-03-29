@@ -1,7 +1,7 @@
 {
   "name": "discourse",
   "version": "1.0.0",
-  "repository": "git@github.com:discourse/discourse-canned-replies.git",
+  "repository": "git@github.com:roblox-dev-forum/community-canned-replies.git",
   "author": "Discourse",
   "license": "MIT",
   "devDependencies": {

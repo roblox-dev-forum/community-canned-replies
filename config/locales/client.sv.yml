@@ -7,7 +7,7 @@
 
 sv:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'rubrik...'
       composer_button_text: "Förberedda svar"
       title:

@@ -22,16 +22,16 @@ export default Ember.Controller.extend(ModalFunctionality, {
 
   actions: {
     save() {
-      ajax("/canned_replies", {
+      ajax("/community_canned_replies", {
         type: "POST",
         data: { title: this.newTitle, content: this.newContent }
       })
         .then(() => {
           this.send("closeModal");
           if (this.site.mobileView) {
-            showModal("canned-replies");
+            showModal("community-canned-replies");
           } else {
-            this.appEvents.trigger("canned-replies:show");
+            this.appEvents.trigger("community-canned-replies:show");
           }
         })
         .catch(popupAjaxError);
@@ -40,9 +40,9 @@ export default Ember.Controller.extend(ModalFunctionality, {
     cancel() {
       this.send("closeModal");
       if (this.site.mobileView) {
-        showModal("canned-replies");
+        showModal("community-canned-replies");
       } else {
-        this.appEvents.trigger("canned-replies:show");
+        this.appEvents.trigger("community-canned-replies:show");
       }
     }
   }

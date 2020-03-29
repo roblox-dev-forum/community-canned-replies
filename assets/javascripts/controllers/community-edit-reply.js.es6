@@ -28,7 +28,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
     save() {
       this.set("saving", true);
 
-      ajax(`/canned_replies/${this.replyId}`, {
+      ajax(`/community_canned_replies/${this.replyId}`, {
         type: "PATCH",
         data: {
           title: this.replyTitle,
@@ -38,22 +38,22 @@ export default Ember.Controller.extend(ModalFunctionality, {
         .catch(popupAjaxError)
         .finally(() => {
           this.set("saving", false);
-          this.appEvents.trigger("canned-replies:show");
+          this.appEvents.trigger("community-canned-replies:show");
         });
     },
 
     remove() {
-      bootbox.confirm(I18n.t("canned_replies.edit.remove_confirm"), result => {
+      bootbox.confirm(I18n.t("community_canned_replies.edit.remove_confirm"), result => {
         if (result) {
-          ajax(`/canned_replies/${this.replyId}`, {
+          ajax(`/community_canned_replies/${this.replyId}`, {
             type: "DELETE"
           })
             .then(() => {
               this.send("closeModal");
               if (this.site.mobileView) {
-                showModal("canned-replies");
+                showModal("community-canned-replies");
               } else {
-                this.appEvents.trigger("canned-replies:show");
+                this.appEvents.trigger("community-canned-replies:show");
               }
             })
             .catch(popupAjaxError);
@@ -64,9 +64,9 @@ export default Ember.Controller.extend(ModalFunctionality, {
     cancel() {
       this.send("closeModal");
       if (this.site.mobileView) {
-        showModal("canned-replies");
+        showModal("community-canned-replies");
       } else {
-        this.appEvents.trigger("canned-replies:show");
+        this.appEvents.trigger("community-canned-replies:show");
       }
     }
   }

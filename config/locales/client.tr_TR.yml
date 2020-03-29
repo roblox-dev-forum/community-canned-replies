@@ -7,7 +7,7 @@
 
 tr_TR:
   js:
-    canned_replies:
+    community_canned_replies:
       filter_hint: 'Başlık...'
       composer_button_text: "Hazır cevaplar"
       title:

@@ -1,13 +1,13 @@
 plugins:
-  canned_replies_enabled:
+  community_canned_replies_enabled:
     default: true
     client: true
-  canned_replies_groups:
+  community_canned_replies_groups:
     default: ""
     type: list
-  canned_replies_everyone_enabled:
+  community_canned_replies_everyone_enabled:
     default: false
     client: true
-  canned_replies_everyone_can_edit:
+  community_canned_replies_everyone_can_edit:
     default: false
     client: true
