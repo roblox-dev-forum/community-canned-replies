@@ -146,14 +146,12 @@ after_initialize do
   end
 
   add_to_class(:user, :can_edit_community_canned_replies?) do
-    return true if staff?
     return true if SiteSetting.community_canned_replies_everyone_can_edit
     group_list = SiteSetting.community_canned_replies_groups.split("|").map(&:downcase)
     groups.any? { |group| group_list.include?(group.name.downcase) }
   end
 
   add_to_class(:user, :can_use_community_canned_replies?) do
-    return true if staff?
     return true if SiteSetting.community_canned_replies_everyone_enabled
     group_list = SiteSetting.community_canned_replies_groups.split("|").map(&:downcase)
     groups.any? { |group| group_list.include?(group.name.downcase) }

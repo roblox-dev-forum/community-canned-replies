@@ -4,12 +4,10 @@ require "rails_helper"
 
 describe CommunityCannedReply do
   let(:user) { Fabricate(:user) }
-  let(:admin) { Fabricate(:admin) }
   let(:group) { Fabricate(:group) }
 
-  it 'works for staff and users in group' do
+  it 'works for users in group' do
     SiteSetting.community_canned_replies_groups = group.name
-    expect(admin.can_use_community_canned_replies?).to eq(true)
     expect(user.can_use_community_canned_replies?).to eq(false)
 
     group.add(user)

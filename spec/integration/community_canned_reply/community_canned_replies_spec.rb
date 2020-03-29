@@ -3,12 +3,6 @@
 require "rails_helper"
 
 RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
-  let(:moderator) do
-    user = Fabricate(:moderator)
-    sign_in(user)
-    user
-  end
-
   let(:privileged_group) do
     group = Fabricate(:group, users: [privileged_user])
     group.add(privileged_user)
@@ -28,7 +22,7 @@ RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
     user
   end
 
-  let(:community_canned_reply) { CommunityCannedReply::Reply.add(moderator, 'some title', 'some content') }
+  let(:community_canned_reply) { CommunityCannedReply::Reply.add(privileged_user, 'some title', 'some content') }
 
   describe 'listing community canned replies' do
     context 'as a normal user' do
@@ -67,14 +61,6 @@ RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
       expect(replies.length).to eq(1)
       expect(reply['title']).to eq 'Reply test title'
       expect(reply['content']).to eq 'Reply test content'
-    end
-
-    context 'as a staff' do
-      it "should list all replies correctly" do
-        moderator
-
-        list_community_canned_replies
-      end
     end
 
     context 'as a privileged user' do
@@ -124,13 +110,6 @@ RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
       expect(PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)).to eq({})
     end
 
-    context 'as a staff' do
-      it 'should be able to remove reply' do
-        moderator
-
-        remove_community_canned_replies
-      end
-    end
     context 'as a privileged user' do
 
       before do
@@ -193,13 +172,6 @@ RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
       expect(reply["content"]).to eq('new content')
     end
 
-    context 'as a staff' do
-      it 'should be able to edit a reply' do
-        moderator
-
-        edit_community_canned_reply
-      end
-    end
     context 'as a privileged user' do
 
       before do
@@ -245,18 +217,6 @@ RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
         expect(reply["usages"]).to eq(1)
       end
     end
-
-    context 'as a staff' do
-      it 'should be able to record a usage' do
-        patch "/community_canned_replies/#{community_canned_reply[:id]}/use"
-
-        expect(response).to be_successful
-
-        _id, reply = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME).first
-
-        expect(reply["usages"]).to eq(1)
-      end
-    end
   end
 
   describe 'retrieving a community canned reply' do
@@ -275,19 +235,6 @@ RSpec.describe CommunityCannedReply::CommunityCannedRepliesController do
 
         get "/community_canned_replies/#{community_canned_reply[:id]}/reply"
         expect(response).to be_successful
-      end
-    end
-
-    context 'as a staff' do
-      it 'should fetch the right community canned reply' do
-        get "/community_canned_replies/#{community_canned_reply[:id]}/reply"
-
-        expect(response).to be_successful
-
-        reply = JSON.parse(response.body)
-
-        expect(reply["title"]).to eq(community_canned_reply[:title])
-        expect(reply["content"]).to eq(community_canned_reply[:content])
       end
     end
   end
