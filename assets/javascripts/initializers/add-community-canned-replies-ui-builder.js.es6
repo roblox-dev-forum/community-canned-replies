@@ -18,7 +18,7 @@ function initializeCommunityCannedRepliesUIBuilder(api) {
   api.addToolbarPopupMenuOptionsCallback(() => {
     return {
       id: "community_canned_replies_button",
-      icon: "far-clipboard",
+      icon: "user-edit",
       action: "showCommunityCannedRepliesButton",
       label: "community_canned_replies.composer_button_text"
     };

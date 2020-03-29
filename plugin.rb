@@ -9,7 +9,7 @@ enabled_site_setting :community_canned_replies_enabled
 
 register_asset 'stylesheets/community-canned-replies.scss'
 
-register_svg_icon "far-clipboard" if respond_to?(:register_svg_icon)
+register_svg_icon "user-edit" if respond_to?(:register_svg_icon)
 
 after_initialize do
 
