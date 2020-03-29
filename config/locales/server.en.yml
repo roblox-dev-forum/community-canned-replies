@@ -1,11 +1,11 @@
 en:
   site_settings:
-    community_canned_replies_enabled: 'Show insert canned reply button on composer window?'
-    community_canned_replies_groups: 'Add access to canned replies for non-staff groups by group name'
-    community_canned_replies_everyone_enabled: 'Allow everyone to use canned replies'
-    community_canned_replies_everyone_can_edit: 'Allow everyone to create, edit, and delete canned replies'
+    community_canned_replies_enabled: 'Show insert community canned reply button on composer window?'
+    community_canned_replies_groups: 'Add access to community canned replies for groups by group name'
+    community_canned_replies_everyone_enabled: 'Allow everyone to use community canned replies'
+    community_canned_replies_everyone_can_edit: 'Allow everyone to create, edit, and delete community canned replies'
   replies:
-    default_reply:
+    default_community_reply:
       title: "My first canned reply"
       body: |
         This is an example canned reply.

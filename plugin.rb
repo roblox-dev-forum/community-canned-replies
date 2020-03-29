@@ -54,7 +54,7 @@ after_initialize do
         replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)
 
         if replies.blank?
-          add_default_reply
+          add_default_community_reply
           replies = PluginStore.get(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME)
         end
 
@@ -83,8 +83,8 @@ after_initialize do
         PluginStore.set(CommunityCannedReply::PLUGIN_NAME, CommunityCannedReply::STORE_NAME, replies)
       end
 
-      def add_default_reply()
-        add(1, I18n.t("replies.default_reply.title"), I18n.t("replies.default_reply.body"))
+      def add_default_community_reply()
+        add(1, I18n.t("replies.default_community_reply.title"), I18n.t("replies.default_community_reply.body"))
       end
     end
   end
