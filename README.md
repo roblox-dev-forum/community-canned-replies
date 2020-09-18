@@ -55,3 +55,5 @@ The `community_canned_replies_enabled` can be used to turn the plugin on/off.
 Upon deployment, `community_canned_replies_groups` should be set to the list of groups that should have view/edit access to the community canned replies button and repository.
 
 The `community_canned_replies_everyone_enabled` and `community_canned_replies_everyone_can_edit` should probably not be used for the Developer Forum, as they let everyone use and edit the canned replies respectively.
+
+#### Copyright 2020 Roblox Corporation
